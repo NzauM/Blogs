@@ -55,11 +55,11 @@ class Blogs(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_blogs(cls):
+    def viewblogs(cls):
         blogs = Blogs.query.all()
-        return pitches
+        return blogs
 
-        
+
 
     
 
