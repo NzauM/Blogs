@@ -61,7 +61,19 @@ class Blogs(db.Model):
 
 class Comments(db.Model):
     __tablename__ = 'comments'
-    
+
+    id = db.Column(db.Integer,primary_key = True)
+    comment = db.Column(db.String(255))
+    user = db.Column(db.String)
+    blog_id = db.Column(db.Integer)
+
+    def save_comments(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def view_comments(cls,blog_id)
+    comments = Comments.query.filter_by(blog_id = blog_id).all()
 
 
 
