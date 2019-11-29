@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>
+        QUOTES
+    </h1>
+    {% for quote in quotesapp %}
+    <h1>
+        {{quote.quote}}
+    </h1>
+    <h2>
+        {{quote.author}}
+    </h2>
+    {% endfor %}
+{% endblock %}
