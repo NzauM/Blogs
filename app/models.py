@@ -48,4 +48,19 @@ class Blogs(db.Model):
     blog = db.Column(db.String)
     author = db.Column(db.String)
     user = db.Column(db.String)
+
+
+    def save_blog(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_blogs(cls):
+        blogs = Blogs.query.all()
+        return pitches
+
+        
+
+    
+
     

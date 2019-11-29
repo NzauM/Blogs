@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content  %}
+<div class="card-deck">
+    {% for my_blog in blogs %}
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">
+                {{my_blog.card.title}}
+          
+            <div class="card-text">
+                {{my_blog.blog}}
+
+                <div class="card-footer">
+                    {{my_blog.author}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
