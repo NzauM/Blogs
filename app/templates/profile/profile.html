@@ -23,11 +23,54 @@
     {%else%}
     <p>No profile picture</p>
     {% endif %}
+  
     {% if user == current_user %}
+    <form  action="{{url_for('main.update_pic',usernam=user.username)}}" method="post" enctype = "multipart/form-data">
+
+        <input type="file"  name="photo" class="form-control" required>
+        <input type="submit">
+      </form>
+   
     <a href="{{url_for('main.update_profile',usernam=user.username)}}">Edit profile</a>
     {% endif %}   
 
+
   </div>
 </div>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <h1>Blogs</h1>
+    <div class="card-deck">
+        {% if blogs  %}
+        {% for my_blogs in blogs %}
+
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    {{my_blogs.title}}
+                </div>
+                <div class="card-text">
+                    {{my_blogs.blog}}
+                </div>
+                <div class="card-footer">
+                    {{my_blogs.author}} <br>
+                    <a href="/comment/{{my_blogs.id}}">Comment</a>
+                    <a href="/update/{{my_blogs.id}}">Edit blog</a>
+                    <a href="/delete/ {{my_blogs.id}} ">Delete Blog</a>
+                    <a href="/comment/{{my_blogs.id}}">
+                        <h4 align='center'>comments for  {{my_blogs.title}} </h4>                        
+                    </a>
+                 
+                </div>
+            </div>
+        </div>
+        {%  endfor %}
+
+        {% else %}
+        {{user.username}} has not yet blogged.
+        {% endif %}
+    </div>
+</div>
+<div class="col-md-2"></div>
 </div>
 {% endblock %}
