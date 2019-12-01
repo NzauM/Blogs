@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 class Quote:
     '''
@@ -19,6 +20,8 @@ class Users(UserMixin,db.Model):
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String,unique = True)
     pass_secure =db.Column(db.String)
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
 
 
     @property
@@ -48,6 +51,7 @@ class Blogs(db.Model):
     blog = db.Column(db.String)
     author = db.Column(db.String)
     user = db.Column(db.String)
+    created = db.Column(db.DateTime,default = datetime.utcnow)
 
 
     def save_blog(self):
@@ -55,9 +59,18 @@ class Blogs(db.Model):
         db.session.commit()
 
     @classmethod
+    def get_user_blogs(cls,user):
+        user_blogs = Blogs.query.filter_by(user = user).all()
+        return user_blogs
+
+    @classmethod
     def viewblogs(cls):
         blogs = Blogs.query.all()
         return blogs
+
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
 
 class Comments(db.Model):
     __tablename__ = 'comments'
@@ -69,6 +82,10 @@ class Comments(db.Model):
 
     def save_comments(self):
         db.session.add(self)
+        db.session.commit()
+
+    def delete_comment(self):
+        db.session.delete(self)
         db.session.commit()
 
     @classmethod
