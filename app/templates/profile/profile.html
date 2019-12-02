@@ -1,76 +1,95 @@
 {% extends 'base.html'%}
+{% block styles%}
+{{super()}}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link
+    href="https://fonts.googleapis.com/css?family=Josefin+Sans|Kaushan+Script|Marck+Script|Merienda|Monoton&display=swap"
+    rel="stylesheet">
+{% endblock styles%}
 
 {% block content %}
-<div class="container">
-<div class="row">
-<!-- displaying  Username-->
-  <div class="col-md-4">
-    <h3> {{user.username| capitalize}} </h3>
-
-    <!--Displaying user bio-->
-    {% if user.bio %}
-      <p> {{user.bio}}</p>
-    {%else%}
-      <p> {{user.username| capitalize}} has no bio </p>
-    {% endif %}
-  </div>
-
-  <!--Display profile photo-->
-  <div class="col-md-4">
-
-    {% if user.profile_pic_path %}
-    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-    {%else%}
-    <p>No profile picture</p>
-    {% endif %}
-  
-    {% if user == current_user %}
-    <form  action="{{url_for('main.update_pic',usernam=user.username)}}" method="post" enctype = "multipart/form-data">
-
-        <input type="file"  name="photo" class="form-control" required>
-        <input type="submit">
-      </form>
-   
-    <a href="{{url_for('main.update_profile',usernam=user.username)}}">Edit profile</a>
-    {% endif %}   
-
-
-  </div>
+<div class="jumbotron">
+    <h1>{{user.username| capitalize}}'s  Profile</h1>
 </div>
-<div class="col-md-2"></div>
-<div class="col-md-8">
-    <h1>Blogs</h1>
-    <div class="card-deck">
-        {% if blogs  %}
-        {% for my_blogs in blogs %}
+<div class="container">
+<div class="row styled">
+    <div class="col-md-6">
+        <!-- Displaying user info -->
+        <h3 style="text-align: center;"> {{user.username| capitalize}} </h3>
+        <!--Displaying user bio-->
+        {% if user.bio %}
+        <p style="text-align: center;"> {{user.bio}}</p>
+        {%else%}
+        <p> {{user.username| capitalize}} has no bio </p>
+        {% endif %}
+        <!-- Displaying profile photo -->
+        {% if user.profile_pic_path %}
+        <img width="400px" src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail pic">
+        {%else%}
+        <p>No profile picture</p>
+        {% endif %}
 
-        <div class="card">
-            <div class="card-body">
-                <div class="card-title">
-                    {{my_blogs.title}}
-                </div>
-                <div class="card-text">
-                    {{my_blogs.blog}}
-                </div>
-                <div class="card-footer">
-                    {{my_blogs.author}} <br>
-                    <a href="/comment/{{my_blogs.id}}">Comment</a>
-                    <a href="/update/{{my_blogs.id}}">Edit blog</a>
-                    <a href="/delete/ {{my_blogs.id}} ">Delete Blog</a>
-                    <a href="/comment/{{my_blogs.id}}">
-                        <h4 align='center'>comments for  {{my_blogs.title}} </h4>                        
-                    </a>
-                 
-                </div>
-            </div>
-        </div>
-        {%  endfor %}
+        {% if user == current_user %}
+        <form action="{{url_for('main.update_pic',usernam=user.username)}}" method="post" enctype="multipart/form-data">
 
-        {% else %}
-        {{user.username}} has not yet blogged.
+            <input type="file" name="photo" class="form-control" required>
+            <input type="submit">
+        </form>
+
+        <a href="{{url_for('main.update_profile',usernam=user.username)}}">Edit profile</a>
         {% endif %}
     </div>
+   
+    <div class="col-md-6">
+        <h1 align="center">Blogs</h1>
+        <div class="card-group">
+            {% if blogs  %}
+            {% for my_blogs in blogs %}
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        {{my_blogs.title}}
+                    </div>
+                    <div class="card-text">
+                        {{my_blogs.blog}}
+                    </div>
+                    <div class="card-footer">
+                        {{my_blogs.author}} <br>
+                        <a href="/comment/{{my_blogs.id}}">Comment</a>
+                        <a href="/update/{{my_blogs.id}}">Edit blog</a>
+                        <a href="/delete/ {{my_blogs.id}} ">Delete Blog</a> <br>
+                        <a href="/comment/{{my_blogs.id}}">
+                            comments for {{my_blogs.title}}
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            {%  endfor %}
+
+            {% else %}
+            {{user.username}} has not yet blogged.
+            {% endif %}
+        </div>
+    </div>
 </div>
-<div class="col-md-2"></div>
 </div>
+<style>
+    body{
+        background-image: url("https://images.assetsdelivery.com/compings_v2/alexmak72427/alexmak724271501/alexmak72427150100122.jpg");
+        font-size: 150%;
+    }
+    /* .styled{
+        margin-top: 10px;
+    } */
+    .jumbotron{
+        background-color: transparent;
+        text-align: center;
+    }
+    .pic{
+        border-radius: 50%;
+    }
+</style>
 {% endblock %}
