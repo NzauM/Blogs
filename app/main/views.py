@@ -41,7 +41,7 @@ def new_blog():
         new_blog.save_blog()
         subscribers=Subscriber.query.all()
         for subscriber in subscribers:
-            mail_message("New Blog Post","email/new_post",subscriber.email,blog = new_blog)
+            mail_message("New Blog Post","email/welcome_subscriber",subscriber.email,blog = new_blog)
         return redirect(url_for('main.index'))
 
 
