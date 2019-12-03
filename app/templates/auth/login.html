@@ -1,22 +1,45 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+
 {% block content %}
+
 <div class="container">
+    <div class="jumbotron"  style="margin-top: 7em !important;">
+        <h2>Login to access more features like adding blogs and commenting on blogs</h2>
+    </div>
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
             {% for message in get_flashed_messages() %}
             <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ message }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
             </div>
             {% endfor %}
             <!-- Login form -->
-            {{wtf.quick_form(login_form)}}
+            <div class="card" style="width: 50rem;">
+                <div class="card-body">
+                    {{wtf.quick_form(login_form)}}
+                </div>
+            </div>
             <p> Don't have an account? <a href="{{url_for('auth.register')}}">Sign up here</a></p>
         </div>
         <div class="col-md-2"></div>
     </div>
 </div>
+<style>
+  body{
+        background-image: url("https://images.assetsdelivery.com/compings_v2/alexmak72427/alexmak724271501/alexmak72427150100122.jpg")
+
+    }
+
+    .jumbotron{
+        background-color: transparent;
+        text-align: center;
+        /* padding-top: 5%; */
+    }
+
+
+</style>
 {% endblock %}

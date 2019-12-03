@@ -3,20 +3,26 @@
 
 {% block content %}
 <div class="container">
-    <div class="col-md-3"></div>
-    <div class="col-md-8">
-        {{ wtf.quick_form(commentForm) }}
-    </div>
-    <div class="col-md-3"></div>
+    <div class="row" style="margin-top: 20em !important;">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{ wtf.quick_form(commentForm) }}
+        </div>
+        <div class="col-md-2"></div>
 
+    </div>
 </div>
-<div class="col-md-4"></div>
-<div class="col-md-4">
-        {% for my_comment in comment %}
-        {{my_comment.comment}}
-        <a href="/delete_comment/ {{my_comment.id}}   ">Delete Comment</a>  <br>
-        
-        {% endfor %}
+<div class="container">
+    <div class="row" style="margin-top: 10em !important;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% for my_comment in comment %}
+            {{my_comment.comment}}
+            <a href="/delete_comment/ {{my_comment.id}}   ">Delete Comment</a> <br>
+
+            {% endfor %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
 </div>
-<div class="col-md-4"></div>
 {% endblock %}

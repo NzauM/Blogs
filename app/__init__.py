@@ -11,6 +11,7 @@ from flask_mail import Mail
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 photos = UploadSet('photos',IMAGES)
+mail= Mail()
 
 
 login_manager = LoginManager()
@@ -28,6 +29,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
+    mail.init_app(app)
 
     configure_uploads(app,photos)
 
