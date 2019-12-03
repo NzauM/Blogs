@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 {% block styles%}
 {{super()}}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -69,8 +70,14 @@
     </div>
         {% endfor %}
     </div>
+   
+
 
     </div>
+    <div class=" col-md-3 subscribed">
+            <h5>Subscribe to our newsletter</h5>       
+            {{wtf.quick_form(SubscriberForm)}}
+        </div>
 <style>
     body{
         background-image: url("https://images.assetsdelivery.com/compings_v2/alexmak72427/alexmak724271501/alexmak72427150100122.jpg");
@@ -80,6 +87,13 @@
         /* color: white; */
         font-family: kalam;
         
+    }
+    .subdcribed{
+        background-color:white;
+        color: black;
+        float: right;
+
+
     }
 
     .index{

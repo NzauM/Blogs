@@ -97,7 +97,10 @@
         padding-bottom: 20px;
         -webkit-transition: all 0.4s ease;
         transition: all 0.4s ease;
-        background-color: blue; 
+        /* background-color: blue;  */
+        background-image: url("https://images.unsplash.com/photo-1557683311-eac922347aa1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1315&q=80");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
 
@@ -410,6 +413,7 @@
             <div id="mainListDiv" class="main_list">   
                 <ul class="navlinks">
                         <li><a href="/new_blog">Add blog</a></li>
+                        
                     {% if current_user. is_authenticated %}
                     <li style="color:white;padding:15px; margin-bottom: 30em !important;"><a href="{{url_for('main.profile',usernam=current_user.username)}}">
                         {{ current_user.username }}
