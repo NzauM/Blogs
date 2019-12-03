@@ -3,6 +3,21 @@
 
 {% block content %}
 <div class="container">
+  <div class="jumbotron">
+    <h3>Edit your blog from here and submit</h3>
+  </div>
   {{wtf.quick_form(form)}}
 </div>
+<style>
+   body{
+        background-image: url("https://images.assetsdelivery.com/compings_v2/alexmak72427/alexmak724271501/alexmak72427150100122.jpg")
+
+    }
+.jumbotron{
+    padding-top: 15%;
+    text-align: center;
+    background-color: transparent;
+}
+
+</style>
 {% endblock %}
