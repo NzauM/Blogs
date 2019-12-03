@@ -18,7 +18,7 @@ def getquotes():
             quote_results = process_results(quotes_result_list)
 
 
-        
+         
 
     return quote_results
 
