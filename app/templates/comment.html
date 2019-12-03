@@ -3,7 +3,10 @@
 
 {% block content %}
 <div class="container">
-    <div class="row" style="margin-top: 20em !important;">
+    <div class="row" style="margin-top: 5em !important;">
+        <div class="jumbotron">
+            <h3>Write your comment here</h3>
+        </div>
         <div class="col-md-2"></div>
         <div class="col-md-8">
             {{ wtf.quick_form(commentForm) }}
@@ -25,4 +28,16 @@
         <div class="col-md-4"></div>
     </div>
 </div>
+<style>
+ body{
+        background-image: url("https://images.assetsdelivery.com/compings_v2/alexmak72427/alexmak724271501/alexmak72427150100122.jpg")
+
+    }
+.jumbotron{
+    padding-top: 5%;
+    text-align: center;
+    background-color: transparent;
+}
+
+</style>
 {% endblock %}
